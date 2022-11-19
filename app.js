@@ -33,6 +33,23 @@ app.get('./api/products/:productID/review/:reviewID', (req, res) => {
   res.send('hello world')
 })
 
+app.get('/api/v1/query', (req, res) => {
+  // console.log(req.query)
+  const { search, limit } = req.query
+  let sortedProducts = [...products]
+
+  if (search) {
+    sortedProducts = sortedProducts.filter((product) => {
+      return product.name.startsWith(search)
+    })
+  }
+  if (limit) {
+    sortedProducts = sortedProducts.slice(0, Number(limit))
+  }
+  res.send(200).json(sortedProducts)
+  // res.send('hello world')
+})
+
 app.listen(5000, (req, res) => {
   console.log('Server listening on port 5000...')
 })
