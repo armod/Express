@@ -8,11 +8,11 @@ app.use([logger, authorize])
 
 // api/home/about/products
 app.get('/', (req, res) => {
+  res.send('Home')
   // const method = req.method
   // const url = req.url
   // const time = new Date().getFullYear()
   // console.log(method, url, time)
-  return res.send('Home')
 })
 
 app.get('/about', (req, res) => {
@@ -22,6 +22,7 @@ app.get('/api/products', (req, res) => {
   res.send('Products')
 })
 app.get('/api/items', (req, res) => {
+  console.log(req.user)
   res.send('Items')
 })
 
